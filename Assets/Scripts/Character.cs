@@ -6,6 +6,7 @@ public class Character : MonoBehaviour
 {   
     public float Speed;
     public float JumpForce;
+    public Animator anim;
 
     private Rigidbody2D rig;
 
@@ -15,6 +16,7 @@ public class Character : MonoBehaviour
     void Start()
     {
         rig = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -25,7 +27,15 @@ public class Character : MonoBehaviour
     }
 
     void Move()
-    {
+    {   if(Input.GetAxis("Horizontal") != 0)
+        {      
+            anim.SetBool("Running", true);
+        }
+        else
+        {      
+            anim.SetBool("Running", false);
+        }
+
         Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f);
         transform.position += movement * Time.deltaTime * Speed;
 
