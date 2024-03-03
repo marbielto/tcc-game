@@ -56,9 +56,11 @@ public class Character : MonoBehaviour
     void Jump()
     {
         if(Input.GetButtonDown("Jump") && !isJumping)
-        {
+        {   
+            
             rig.AddForce(new Vector2(0f, JumpForce), ForceMode2D.Impulse);
         }
+           
 
     }
 }

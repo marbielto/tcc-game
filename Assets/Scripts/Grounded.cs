@@ -5,6 +5,9 @@ using UnityEngine;
 public class Grounded : MonoBehaviour
 {   
     Character Player;
+    public Animator anim2;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -15,7 +18,8 @@ public class Grounded : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collisor)
     {
         if(collisor.gameObject.layer == 8)
-        {
+        {   
+            anim2.SetBool("Jumping", false);
             Player.isJumping = false;
         }
     }
@@ -23,7 +27,8 @@ public class Grounded : MonoBehaviour
     void OnCollisionExit2D(Collision2D collisor)
     {   
         if(collisor.gameObject.layer == 8)
-        {
+        {   
+            anim2.SetBool("Jumping", true);
             Player.isJumping = true;
         }
 
