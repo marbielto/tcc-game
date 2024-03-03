@@ -148,7 +148,7 @@ Transform:
   m_GameObject: {fileID: 6567162}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.765, y: -0.19, z: 0}
+  m_LocalPosition: {x: -0.863, y: -0.102, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1435,7 +1435,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 1451097925}
   ataquePoint: {fileID: 6567163}
-  ataqueRanger: 0.31
+  ataqueRanger: 0.39
   enemyLayers:
     serializedVersion: 2
     m_Bits: 64
