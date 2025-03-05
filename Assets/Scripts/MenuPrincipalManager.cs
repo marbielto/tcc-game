@@ -8,10 +8,12 @@ public class MenuPrincipalManager : MonoBehaviour
     [SerializeField] private string nomeDoLevelDeJogo;
     [SerializeField] private GameObject painelMenuInicial;
     [SerializeField] private GameObject painelOpcoes;
+    public string sceneName;
 
     public void Jogar()
     {
-        SceneManager.LoadScene(nomeDoLevelDeJogo);
+       Time.timeScale = 1f;
+       SceneManager.LoadScene(nomeDoLevelDeJogo);
     }
 
     public void AbreCreditos()
@@ -30,5 +32,11 @@ public class MenuPrincipalManager : MonoBehaviour
     {   
         Debug.Log("fechou o jogo");
         Application.Quit();
+    }
+    
+    public void LoadScene()
+    {
+        Time.timeScale = 1f; // Garante que o tempo volte ao normal caso esteja pausado
+        SceneManager.LoadScene(sceneName); // Carrega a cena específica
     }
 }

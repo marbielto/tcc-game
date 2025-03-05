@@ -1,54 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Enemy : MonoBehaviour
 {   
-    private Transform playerPosition;
-    public Animator animEnemy;
+    public Transform currentTarget;
+    public SpriteRenderer sr;
+    public Transform targetA;
+    public Transform targetB;
     
-    public float enemySpeed;
-
-    // Start is called before the first frame update
     void Start()
     {
-        playerPosition = GameObject.FindGameObjectWithTag("Player").transform;
+        currentTarget = targetA;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        followPlayer();
-    }
-
-    private void followPlayer()
-    {
-        if(playerPosition.gameObject != null)
+        if(currentTarget == targetA && transform.position == targetA.position)
         {
-            transform.position = Vector2.MoveTowards(transform.position, playerPosition.position, enemySpeed * Time.deltaTime);
+            currentTarget = targetB;
+        }
+        if(currentTarget == targetB && transform.position == targetB.position)
+        {
+            currentTarget = targetA;
         }
 
-        float inputAxis = Input.GetAxis("Horizontal");
+        transform.position = Vector2.MoveTowards(transform.position, currentTarget.position, 5 * Time.deltaTime);
 
-        if(inputAxis > 0)
+        if(transform.position.x > currentTarget.position.x)
         {
-            transform.eulerAngles = new Vector2(0f, 180f);
-        }
-
-        if(inputAxis < 0)
-        {
-            transform.eulerAngles = new Vector2(0f, 0f);
-        }
-
-        if(Input.GetAxis("Horizontal") != 0)
-        {      
-            animEnemy.SetBool("enemyRun", true);
+            sr.flipX = false;
         }
         else
-        {      
-            animEnemy.SetBool("enemyRun", false);
+        {
+            sr.flipX = true;
         }
-
-        
     }
 }

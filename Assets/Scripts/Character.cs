@@ -12,6 +12,8 @@ public class Character : MonoBehaviour
 
     public bool isJumping;
 
+    public GameManager gameManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -62,5 +64,15 @@ public class Character : MonoBehaviour
         }
            
 
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {   
+        if(collision.gameObject.CompareTag("Enemy"))
+        {
+            gameManager.gameOver();
+            Debug.Log("Game Over");
+        }
+       
     }
 }
