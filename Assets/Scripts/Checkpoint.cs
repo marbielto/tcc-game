@@ -5,11 +5,12 @@ using UnityEngine;
 public class Checkpoint : MonoBehaviour
 {   
     public GameObject victoryCanvas;
+    public GameObject checkpointFlag;
+    private bool isActivated = false;
 
-    // Start is called before the first frame update
     private void Start()
     {
-        if(victoryCanvas != null)
+        if (victoryCanvas != null)
         {
             victoryCanvas.SetActive(false);
         }
@@ -17,15 +18,22 @@ public class Checkpoint : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {   
-        Debug.Log("Algo entrou no checkpoint: " + other.gameObject.name); // Exibe no console
-
-        if(other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !isActivated)
         {   
-            Debug.Log("Checkpoint ativado!"); // Mensagem de depuração
-            if(victoryCanvas != null)
+            if (EnemyManager.Instance.AllEnemiesDefeated())
             {
-                victoryCanvas.SetActive(true);
-                Time.timeScale = 0f;
+                Debug.Log("Checkpoint ativado!");
+                isActivated = true;
+                if (victoryCanvas != null)
+                {
+                    victoryCanvas.SetActive(true);
+                    checkpointFlag.SetActive(true);
+                    Time.timeScale = 0f;
+                }
+            }
+            else
+            {   checkpointFlag.SetActive(false);
+                Debug.Log("Ainda há inimigos vivos!");
             }
         }
     }

@@ -39,4 +39,10 @@ public class MenuPrincipalManager : MonoBehaviour
         Time.timeScale = 1f; // Garante que o tempo volte ao normal caso esteja pausado
         SceneManager.LoadScene(sceneName); // Carrega a cena específica
     }
+
+    public void OpenURL()
+    {
+        Application.OpenURL("https://www.linkedin.com/in/marcos-gabriel-barreto-13ab2b164/?originalSubdomain=brhttps://www.linkedin.com/in/marcos-gabriel-barreto-13ab2b164/");
+        Debug.Log("abriu o link");
+    }
 }

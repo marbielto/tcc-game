@@ -10,9 +10,18 @@ public class GameManager : MonoBehaviour
     public GameObject YouWin;
     public GameObject Credits;
     public GameObject MainMenu;
-    
 
 
+
+    private void Start()
+    {
+        // Se estiver na cena do menu, resetar o contador de mortes
+        if (SceneManager.GetActiveScene().name == "Menu")
+        {
+            Character.deathCount = 0;
+            Debug.Log("Contador de mortes resetado ao carregar o Menu.");
+        }
+    }
 
     public void startGame()
     {
@@ -26,10 +35,13 @@ public class GameManager : MonoBehaviour
         Debug.Log("abriu o link");
     }
 
-    public void returnMenu()
+     public void returnMenu()
     {
-        Credits.SetActive(false);
-        MainMenu.SetActive(true);
+        // Resetar o contador de mortes
+        Character.ResetDeathCount();
+
+        // Carregar a cena do Menu
+        SceneManager.LoadScene("Menu");
     }
 
     public void credits()

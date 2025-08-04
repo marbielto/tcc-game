@@ -9,7 +9,8 @@ public class Enemy : MonoBehaviour
     public SpriteRenderer sr;
     public Transform targetA;
     public Transform targetB;
-    
+    public float velocidade = 4f; // Variável para ajustar a velocidade
+
     void Start()
     {
         currentTarget = targetA;
@@ -26,8 +27,10 @@ public class Enemy : MonoBehaviour
             currentTarget = targetA;
         }
 
-        transform.position = Vector2.MoveTowards(transform.position, currentTarget.position, 5 * Time.deltaTime);
+        // Usa a variável de velocidade para controlar o deslocamento
+        transform.position = Vector2.MoveTowards(transform.position, currentTarget.position, velocidade * Time.deltaTime);
 
+        // Ajusta a direção do inimigo
         if(transform.position.x > currentTarget.position.x)
         {
             sr.flipX = false;
