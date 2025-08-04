@@ -32,7 +32,7 @@ public class Checkpoint : MonoBehaviour
                 }
             }
             else
-            {   checkpointFlag.SetActive(false);
+            {
                 Debug.Log("Ainda há inimigos vivos!");
             }
         }
